@@ -1,0 +1,20 @@
+*,*:before,*:after{
+    box-sizing: border-box;
+}
+img{
+    max-width: 100%;
+    height: auto ;
+}
+
+body {
+    font-family: "acumin-pro","Helvetica Neue",sans-serif;
+    max-width: 100%;
+    margin: 0 auto;
+}
+strong, b {
+    font-weight: bold;
+}
+a {
+    color: rgba(0,0,0,0.8);
+    text-decoration: none;
+}

@@ -1,0 +1,194 @@
+@import "compass/reset";
+@import "imports/screen";
+@import "imports/mixin";
+@import "imports/imports";
+@import "imports/module";
+@import "icon/style";
+
+$container-width: 1080px;
+$color-1: #F6F5F5;
+$color-2: #E3E3E3;
+$color-3: #3BB4C1;
+$color-4: #048998;
+$shadow: 1px 3px 5px rgba(0,0,0,0.3);
+
+.ckb {
+	position: fixed;
+	top: -999px;
+	left: -999px;
+	display: none;
+	@include opacity(0);
+}
+
+nav {
+	display: block;
+	width: 100%;
+	background-color: $color-2;
+	z-index: 20;
+	.container {
+		max-width: $container-width;
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 28px;
+		z-index: 10;
+		@include transition(padding, .3s);
+		@include clearfix();
+
+		@include bigPhone() {
+			padding: 12px;
+		}
+
+		> * {
+			float: left;
+			display: inline-block;
+			font-weight: bold;
+			height: 40px;
+			line-height: 40px;
+
+		}
+		.menu-btn {
+			display: none;
+			cursor: pointer;
+			@include bigPhone(){
+				display: inline-block;
+				font-size: 28px;
+				height: 35px;
+				margin-right: 15px;
+				transform:rotate(0deg);
+				@include transition(all, .2s);
+			}
+		}
+		.menu-cover {
+			display: none;
+			@include bigPhone(){
+				position: fixed;
+				top: 64px;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(39,40,34,.3);
+				z-index: 10;
+			}
+		}
+		#menu-ckb {
+			@include bigPhone(){
+				&:checked {
+					~ .nav,
+					~ .music-list {
+						width: 220px;
+						height: auto;
+						display: block;
+						position: absolute;
+						top: 50px;
+						left: 0;
+						background-color: white;
+						z-index: 15;
+						box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+					}
+					~ .menu-btn {
+						transform:rotate(90deg);
+					}
+					~ .menu-cover {
+						display: block;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		h1 a {
+			font-size: 32px;
+			color: rgba(0,0,0,0.8);
+			@include bigPhone(){
+				font-size: 24px;
+			}
+		}
+
+		.nav {
+			display: inline-block;
+			float: right;
+			@include bigPhone(){
+				display: none;
+			}
+
+			a, .music-category {
+				cursor: pointer;
+				color: black;
+				padding: 0 8px;
+				margin: 0 12px;
+				display: inline-block;
+				@include transition(opacity, 0.3s);
+				@include opacity(1);
+			}
+			a, .music-name {
+				&:hover {
+					border-bottom: 1px solid rgba(0,0,0,0.3);
+					@include opacity(0.9);
+				}
+			}
+			.music-list {
+				display: none;
+				padding-bottom: 10px;
+				box-shadow: $shadow;
+				width: 120px;
+				text-align: center;
+				background-color: $color-1;
+			}
+			.music-category {
+				position: relative;
+				&:hover {
+					padding-bottom: 20px;
+					.music-list {
+						position: absolute;
+						top: 50px;
+						left: -15px;
+						height: auto;
+						display: block;
+
+						a {
+							display: block;
+							padding: 5px 0;
+						}
+					}
+				}
+				.icon-triangle-down {
+					font-size: 12px;
+					margin-left: 10px;
+				}
+			}			
+		}
+		.about {
+			text-align: center;
+			width: 80px;
+			float: right;
+			padding: 0 8px;
+			margin: 0 10px;
+			background: $color-4;
+		    color: $color-1;
+		    box-shadow: $shadow;
+		    @include border-radius(5px);
+
+		    &:hover {
+				@include opacity(0.9);
+		    }
+		    @include bigPhone(){
+		    	width: 60px;
+		    	padding: 0;
+				font-size: 16px;
+		    }
+		    @include minPhone(){
+		    	width: 50px;
+				font-size: 14px;
+		    }
+		}
+	}
+}
+
+.content {
+	display: -block;
+	width: 100%;
+	background-color: $color-1;
+
+	.container {
+
+	}
+}
