@@ -12,6 +12,10 @@ $color-3: #3BB4C1;
 $color-4: #048998;
 $shadow: 1px 3px 5px rgba(0,0,0,0.3);
 
+body, html {
+  height: 100%;
+}
+
 .ckb {
 	position: fixed;
 	top: -999px;
@@ -37,7 +41,6 @@ nav {
 		@include bigPhone() {
 			padding: 12px;
 		}
-
 		> * {
 			float: left;
 			display: inline-block;
@@ -71,19 +74,23 @@ nav {
 			}
 		}
 		#menu-ckb {
-			@include bigPhone(){
-				&:checked {
-					~ .nav,
-					~ .music-list {
-						width: 220px;
+			&:checked {
+				@include bigPhone(){
+					~ .nav {
+						width: 160px;
 						height: auto;
 						display: block;
 						position: absolute;
-						top: 50px;
+						top: 64px;
 						left: 0;
 						background-color: white;
+						padding: 10px;
 						z-index: 15;
 						box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+						a {
+							width: 100%;
+							display: inline-block;
+						}
 					}
 					~ .menu-btn {
 						transform:rotate(90deg);
@@ -102,7 +109,6 @@ nav {
 				font-size: 24px;
 			}
 		}
-
 		.nav {
 			display: inline-block;
 			float: right;
@@ -110,58 +116,25 @@ nav {
 				display: none;
 			}
 
-			a, .music-category {
+			a,{
 				cursor: pointer;
 				color: black;
 				padding: 0 8px;
-				margin: 0 12px;
 				display: inline-block;
 				@include transition(opacity, 0.3s);
 				@include opacity(1);
-			}
-			a, .music-name {
 				&:hover {
-					border-bottom: 1px solid rgba(0,0,0,0.3);
+					border-bottom: 1px solid rgba(0,0,0,0.8);
 					@include opacity(0.9);
 				}
 			}
-			.music-list {
-				display: none;
-				padding-bottom: 10px;
-				box-shadow: $shadow;
-				width: 120px;
-				text-align: center;
-				background-color: $color-1;
-			}
-			.music-category {
-				position: relative;
-				&:hover {
-					padding-bottom: 20px;
-					.music-list {
-						position: absolute;
-						top: 50px;
-						left: -15px;
-						height: auto;
-						display: block;
-
-						a {
-							display: block;
-							padding: 5px 0;
-						}
-					}
-				}
-				.icon-triangle-down {
-					font-size: 12px;
-					margin-left: 10px;
-				}
-			}			
 		}
 		.about {
 			text-align: center;
 			width: 80px;
 			float: right;
 			padding: 0 8px;
-			margin: 0 10px;
+			margin: 0 8px;
 			background: $color-4;
 		    color: $color-1;
 		    box-shadow: $shadow;
@@ -184,11 +157,126 @@ nav {
 }
 
 .content {
-	display: -block;
+	display: inline-block;
 	width: 100%;
 	background-color: $color-1;
 
 	.container {
+		max-width: $container-width;
+		min-height: calc(100vh - 80px);
+		height: auto;
+		width: 100%;
+		margin: 0 auto;
+		padding: 20px 60px;
+		@include minDesktop() {
+			padding: 20px 20px;
+		}
 
+		.form-search {
+			width: 60%;
+			padding: 10px 20px;
+			padding-bottom: 35px;
+			margin: 15px auto;
+			text-align: center;
+			border-bottom: 1px solid rgba(0,0,0,.4);
+
+			> * {
+				height: 35px;
+				line-height: 35px;
+				font-size: 16px;
+				&, &:focus {
+					border: 0;
+					outline: none;
+				}
+			}
+
+			input {
+				width: calc(100% - 80px - 20px);
+				padding: 10px 15px;
+				box-shadow: $shadow;
+				@include border-radius(2px);
+				&:focus {
+					border: 1px solid $color-3;
+				}
+			}
+			button {
+				cursor: pointer;
+				color: $color-4;
+				width: 80px;
+				box-shadow: $shadow;
+				margin-left: -3px;
+				margin-top: 2px;
+				@include border-radius(2px);
+				@include opacity(1);
+
+				&:hover {
+					@include opacity(.8);
+				}
+			}
+		}
+
+		.info-display {
+			display: inline-block;
+			width: 100%;
+			margin-top: 10px;
+			@include clearfix();
+
+			header {
+				margin-bottom: 20px;
+				padding-bottom: 10px;
+				font-size: 16px;
+				border-bottom: 2px solid rgba(0,0,0,.2);
+			}
+
+			> div {
+				//border: 1px solid red;
+				display: inline-block;
+				float: left;
+				padding: 20px;
+			}
+			.info-list {
+				width: 55%;
+				.info-each {
+					position: relative;
+					cursor: pointer;
+					border-bottom: 1px solid rgba(0,0,0,.5);
+					padding: 12px 4px;
+					margin-bottom: 12px;
+					@include clearfix();
+					> * {
+						display: inline-block;
+						float: left;
+					}
+					img {
+						width: 70px;
+						height: 70px;
+					}
+					.event {
+						padding: 0 15px 0 20px;
+						width: calc(100% - 70px - 35px);
+						h2 {
+							margin-bottom: 5px;
+							font-size: 16px;
+						}
+					}
+					span {
+						position: absolute;
+						bottom: 10px;
+						right: 16px;
+						@include transition(right, .3s);
+					}
+
+					&:hover {
+						box-shadow: 1px 3px 1px rgba(0,0,0,0.2);;
+						span {
+							right: 8px;
+						}
+					}
+				}
+			}
+			.info-detail {
+				width: 45%;
+			}
+		}
 	}
 }
