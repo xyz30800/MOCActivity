@@ -16,3 +16,9 @@
 @mixin test-border() {
 	border: 1px solid red;
 }
+
+@mixin hide-text() {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+} 

@@ -6,14 +6,17 @@
 @import "icon/style";
 
 $container-width: 1080px;
-$color-1: #F6F5F5;
+$color-1: #F95959;
 $color-2: #E3E3E3;
-$color-3: #3BB4C1;
-$color-4: #048998;
+$color-3: #455D7A;
+$color-4: #233142;
 $shadow: 1px 3px 5px rgba(0,0,0,0.3);
+$bottom-color: rgba(0,0,0,.5);
 
 body, html {
-  height: 100%;
+  	height: 100%;
+	font-family: "Helvetica Neue",Helvetica,"segoe ui","microsoft jhenghei","microsoft mhei",stheititc,sans-serif;
+	// font-family: 'Source Sans Pro', sans-serif;
 }
 
 .ckb {
@@ -104,7 +107,7 @@ nav {
 		}
 		h1 a {
 			font-size: 32px;
-			color: rgba(0,0,0,0.8);
+			color: $color-4;
 			@include bigPhone(){
 				font-size: 24px;
 			}
@@ -118,30 +121,29 @@ nav {
 
 			a,{
 				cursor: pointer;
-				color: black;
+				color: $color-4;
 				padding: 0 8px;
 				display: inline-block;
 				@include transition(opacity, 0.3s);
 				@include opacity(1);
 				&:hover {
-					border-bottom: 1px solid rgba(0,0,0,0.8);
+					border-bottom: 1px solid $bottom-color;
 					@include opacity(0.9);
 				}
 			}
 		}
 		.about {
 			text-align: center;
-			width: 80px;
+			width: 70px;
 			float: right;
-			padding: 0 8px;
+			padding: 0 5px;
 			margin: 0 8px;
-			background: $color-4;
-		    color: $color-1;
-		    box-shadow: $shadow;
+		    color: $color-4;
+			border: 1px solid $color-4;
 		    @include border-radius(5px);
 
 		    &:hover {
-				@include opacity(0.9);
+				@include opacity(0.7);
 		    }
 		    @include bigPhone(){
 		    	width: 60px;
@@ -159,123 +161,177 @@ nav {
 .content {
 	display: inline-block;
 	width: 100%;
-	background-color: $color-1;
+	background-color: white;
 
 	.container {
+		display: block;
 		max-width: $container-width;
 		min-height: calc(100vh - 80px);
 		height: auto;
 		width: 100%;
 		margin: 0 auto;
-		padding: 20px 60px;
+		padding: 30px 10px;
+		@include clearfix();
 		@include minDesktop() {
 			padding: 20px 20px;
 		}
 
-		.form-search {
-			width: 60%;
-			padding: 10px 20px;
-			padding-bottom: 35px;
-			margin: 15px auto;
-			text-align: center;
-			border-bottom: 1px solid rgba(0,0,0,.4);
+		> div {
+			display: inline-block;
+			width: calc(50% - 16px);
+			float: left;
+			padding: 20px;
+			margin: 4px 8px;
+			border: 1px solid rgba(0,0,0,0.2);
+			box-shadow: 1px 3px 1px rgba(0,0,0,0.2);
+			@include border-radius(8px);
 
-			> * {
-				height: 35px;
-				line-height: 35px;
-				font-size: 16px;
-				&, &:focus {
-					border: 0;
-					outline: none;
-				}
-			}
-
-			input {
-				width: calc(100% - 80px - 20px);
-				padding: 10px 15px;
-				box-shadow: $shadow;
-				@include border-radius(2px);
-				&:focus {
-					border: 1px solid $color-3;
-				}
-			}
-			button {
-				cursor: pointer;
+		}
+		.info-list {
+			header {
 				color: $color-4;
-				width: 80px;
-				box-shadow: $shadow;
-				margin-left: -3px;
-				margin-top: 2px;
-				@include border-radius(2px);
-				@include opacity(1);
+				padding-bottom: 10px;
+				margin-bottom: 12px;
+				font-size: 20px;
+				border-bottom: 2px solid rgba(0,0,0,.2);
+				span {
+					margin-right: 10px;
+				}
+			}
+			.form-search {
+				position: relative;
+				margin-bottom: 2px;
+				width: 90%;
+				margin: 0 auto;
+				margin-bottom: 16px;
+
+				> * {
+					height: 30px;
+					line-height: 30px;
+					font-size: 16px;
+					&, &:focus {
+						border: 0;
+						outline: none;
+					}
+				}
+
+				input {
+					background-color: rgba(235,235,235,.9);
+					width: 100%;
+					padding: 15px;
+					@include border-radius(4px);
+					&:focus {
+						background-color: rgba(235,235,235,.7);
+					}
+				}
+				span {
+					position: absolute;
+					top: 0;
+					right: 10px;
+					cursor: pointer;
+					@include opacity(.6);
+
+					&:hover {
+						@include opacity(.8);
+					}
+				}
+			}
+			.info-each {
+				position: relative;
+				cursor: pointer;
+				border-bottom: 1px solid rgba(69,93,122,.8);
+				padding: 12px 4px;
+				margin-bottom: 12px;
+				@include clearfix();
+				> * {
+					display: inline-block;
+					float: left;
+				}
+				img {
+					width: 70px;
+					height: 70px;
+				}
+				.event {
+					padding: 0 15px 0 20px;
+					width: calc(100% - 70px - 35px);
+					h2 {
+						margin-bottom: 5px;
+						font-size: 16px;
+						line-height: 30px;
+						color: $color-3;
+						&:first-child {
+							border-bottom: 1px solid rgba(0,0,0,.2);
+						}
+					}
+				}
+				span {
+					position: absolute;
+					color: $color-3;
+					bottom: 10px;
+					right: 16px;
+					@include transition(right, .3s, color, .3s);
+				}
 
 				&:hover {
-					@include opacity(.8);
+					@include border-radius(4px);
+					box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+					span {
+						color: $color-4;
+						right: 8px;
+					}
 				}
 			}
 		}
-
-		.info-display {
-			display: inline-block;
-			width: 100%;
-			margin-top: 10px;
-			@include clearfix();
-
+		.info-detail {
 			header {
-				margin-bottom: 20px;
+				color: $color-4;
 				padding-bottom: 10px;
-				font-size: 16px;
+				font-size: 20px;
 				border-bottom: 2px solid rgba(0,0,0,.2);
+				span {
+					margin-right: 10px;
+				}
 			}
 
-			> div {
-				//border: 1px solid red;
-				display: inline-block;
-				float: left;
-				padding: 20px;
-			}
-			.info-list {
-				width: 55%;
-				.info-each {
-					position: relative;
-					cursor: pointer;
-					border-bottom: 1px solid rgba(0,0,0,.5);
-					padding: 12px 4px;
-					margin-bottom: 12px;
-					@include clearfix();
-					> * {
-						display: inline-block;
-						float: left;
+			.describe {
+				padding: 8px;
+				
+				.describe-col {
+					width: 100%;
+					padding: 4px 0;
+					margin-bottom: 10px;
+					border-bottom: 1px solid rgba(0,0,0,0.2);
+					> span {
+						width: 100%;
+						display: block;
 					}
-					img {
-						width: 70px;
-						height: 70px;
-					}
-					.event {
-						padding: 0 15px 0 20px;
-						width: calc(100% - 70px - 35px);
-						h2 {
-							margin-bottom: 5px;
+					.describe-title {
+						font-weight: bold;
+						margin-bottom: 12px;
+						font-size: 18px;
+						color: $color-3;
+						margin: 8px 0;
+						span {
 							font-size: 16px;
 						}
 					}
-					span {
-						position: absolute;
-						bottom: 10px;
-						right: 16px;
-						@include transition(right, .3s);
-					}
-
-					&:hover {
-						box-shadow: 1px 3px 1px rgba(0,0,0,0.2);;
-						span {
-							right: 8px;
+					.describe-cont {
+						text-indent: 20px;
+						color: rgba(0,0,0,.7);
+						line-height: 24px;
+						margin-bottom: 4px;
+						a {
+							margin-left: 16px;
+							color: $color-1;
+							&:hover {
+								@include opacity(.7);
+							}
 						}
 					}
 				}
 			}
-			.info-detail {
-				width: 45%;
+			.google-map {
+    			text-align: center;
 			}
 		}
 	}
