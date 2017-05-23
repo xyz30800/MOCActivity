@@ -177,17 +177,23 @@ nav {
 		}
 
 		> div {
+			width: calc(50% - 8px);
 			display: inline-block;
-			width: calc(50% - 16px);
 			float: left;
 			padding: 20px;
-			margin: 4px 8px;
+			margin: 4px;
 			border: 1px solid rgba(0,0,0,0.2);
 			box-shadow: 1px 3px 1px rgba(0,0,0,0.2);
 			@include border-radius(8px);
-
+			@include transition(width, .3s);
 		}
 		.info-list {
+			// width: 100%;
+			// width: calc(50% - 8px);
+
+			@include bigPhone() {
+				width: 100%;
+			}
 			header {
 				color: $color-4;
 				padding-bottom: 10px;
@@ -196,11 +202,19 @@ nav {
 				border-bottom: 2px solid rgba(0,0,0,.2);
 				span {
 					margin-right: 10px;
+					&.hover-style {
+						display: inline-block;
+						font-size: 24px;
+						border: 1px solid #ddd;
+						@include border-radius(4px);
+						&:hover {
+							color: white;
+						}
+					}
 				}
 			}
 			.form-search {
 				position: relative;
-				margin-bottom: 2px;
 				width: 90%;
 				margin: 0 auto;
 				margin-bottom: 16px;
@@ -236,7 +250,18 @@ nav {
 					}
 				}
 			}
+			.warning {
+				display: block;
+			    width: 100%;
+			    text-align: center;
+			    font-weight: bold;
+			    margin-top: 20px;
+				color: $color-1;
+			}
 			.info-each {
+				display: flex;
+				align-items: center;
+				width: 100%;
 				position: relative;
 				cursor: pointer;
 				border-bottom: 1px solid rgba(69,93,122,.8);
@@ -248,8 +273,10 @@ nav {
 					float: left;
 				}
 				img {
-					width: 70px;
-					height: 70px;
+					width: 80px;
+					height: 80px;
+					border: 1px solid rgba(0,0,0,.2);
+					@include border-radius(5px);
 				}
 				.event {
 					padding: 0 15px 0 20px;
@@ -275,6 +302,7 @@ nav {
 				&:hover {
 					@include border-radius(4px);
 					box-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+					background-color: rgba(250,250,250,.5);
 					span {
 						color: $color-4;
 						right: 8px;
@@ -283,16 +311,44 @@ nav {
 			}
 		}
 		.info-detail {
-			header {
-				color: $color-4;
-				padding-bottom: 10px;
-				font-size: 20px;
+			// width: calc(50% - 8px);
+
+			// display: none;
+			@include bigPhone() {
+				display: none;
+			}
+			.header {
 				border-bottom: 2px solid rgba(0,0,0,.2);
-				span {
-					margin-right: 10px;
+				display: block;
+				width: 100%;
+				> * {
+					width: auto;
+					display: inline-block;
+				}
+				header {
+					width: calc(100% - 100px);
+					color: $color-4;
+					margin-bottom: 10px;
+					font-size: 20px;
+					span {
+						margin-right: 10px;
+					}
+				}
+				select {
+					float: right;
+					width: 100px;
+					color: rgba(0,0,0,0.8);
+					font-size: 16px;
+					padding: 3px;
+					border: 1px solid rgba(0,0,0,0.3);
+					@include border-radius(4px);
+					&:focus {
+						border: 1px solid rgba(0,0,0,0.5);
+						outline: none;
+						background-color: rgba(235,235,235,.2);
+					}
 				}
 			}
-
 			.describe {
 				padding: 8px;
 				
@@ -313,6 +369,7 @@ nav {
 						margin: 8px 0;
 						span {
 							font-size: 16px;
+
 						}
 					}
 					.describe-cont {
