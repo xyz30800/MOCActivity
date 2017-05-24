@@ -23,8 +23,10 @@
     "extract-text-webpack-plugin": "^2.1.0",
     "lodash": "^4.17.4",
     "node-sass": "^4.5.2",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-google-maps": "^6.3.0",
     "sass-loader": "^6.0.3",
     "style-loader": "^0.17.0"
   }

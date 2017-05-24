@@ -1,26 +1,29 @@
 import React, {Component} from 'react';
 import InfoItem from './info_list_item';
+import SearchBar from './search_bar';
 
-const InfoList = ({infoList, onInfoSelect}) => {
+const InfoList = ({infoList, fetchData, onInfoSelect}) => {
 
+	let infoItems = '';
 	if (Object.keys(infoList).length === 0) {
-		return <span className="warning">無資料</span>;
+		infoItems = (<span className="warning">無資料</span>);
+	} else {
+		infoItems = infoList.map(itemEach => {
+			return (
+				<InfoItem
+					onInfoSelect={onInfoSelect}
+					key={itemEach.UID}
+					itemEach={itemEach}
+				/>
+			)
+		});
 	}
 
-	const infoItems = infoList.map(itemEach => {
-		// console.log(itemEach)
-		return (
-			<InfoItem
-				onInfoSelect={onInfoSelect}
-				key={itemEach.UID}
-				itemEach={itemEach}
-			/>
-		)
-	});
-
 	return (
-		<div className="">
-         	{infoItems}
+		<div className="info-list" id="info-list">
+			<header className="header"><span className="icon-map2"></span>最近活動</header>
+			<SearchBar fetchData={fetchData} />
+			{infoItems}
         </div>
 	);
 }
