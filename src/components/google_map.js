@@ -1,22 +1,28 @@
 import React, {Component} from 'react';
-import { GoogleMapLoader, GoogleMap } from 'react-google-maps';
-import PropTypes from 'prop-types';
+import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
 
 const GoogleMapComponent = (props) => {
-	console.log(props)
+
+	const [ lat, lon ] = [ parseFloat(props.lat), parseFloat(props.lon) ]
+	
 	return (
 		<GoogleMapLoader
 			containerElement={ <div style={{height: '100%'}} /> }
 			googleMapElement={
-				<GoogleMap defaultZoom={12} defaultCenter={{lat: props.lat, lng: props.lon}}/>
+				<GoogleMap
+					defaultZoom={15} 
+					defaultCenter={{lat: lat, lng: lon}} >
+	                <Marker 
+	                	icon=""
+	                	position={{
+					        lat: lat,
+					        lng: lon,
+					    }}
+	                />
+				</GoogleMap>
 			}
 		/>
 	);
-}
-
-GoogleMapComponent.propTypes = {
-	lat: PropTypes.any.isRequired,
-	lon: PropTypes.any.isRequired,
 }
 
 export default GoogleMapComponent;

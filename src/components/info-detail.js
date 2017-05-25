@@ -4,10 +4,11 @@ import GoogleMapComponent from './google_map';
 const InfoDetail = ({InfoDetail}) => {
 	
 	let detailHTML;
-	if (Object.keys(InfoDetail).length === 0) {
+	if (!InfoDetail || Object.keys(InfoDetail).length === 0) {
 		detailHTML = '';
 	} else {
 		const showInfo = InfoDetail.showInfo[0];
+		const {longitude, latitude} = showInfo;
 		detailHTML = (
 			<div>
 				<div className="header">
@@ -40,7 +41,7 @@ const InfoDetail = ({InfoDetail}) => {
 		          	</div>
 		    	</div>
 		        <div className="google-map">
-		    		<GoogleMapComponent  lon={showInfo.longitude} lat={showInfo.latitude} />
+		    		<GoogleMapComponent  lon={longitude} lat={latitude} />
 		        </div>
 		    </div>
 	    )
