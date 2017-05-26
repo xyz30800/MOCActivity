@@ -35,25 +35,19 @@ class App extends Component {
 			const infoList = resp.slice(0, dataLen).filter(info => info.title.includes(queryTerm));
 			
 			this.setState({
-				infoList: infoList,
+				infoList,
 				selectInfo: infoList[0]
 			});
   		})
 	}
-	getSearchTerm(term) {
-		this.setState({
-			searchTerm: term
-		});
-
-		this.fetchData(term, this.state.actType)
+	getSearchTerm(searchTerm) {
+		this.setState({searchTerm});
+		this.fetchData(searchTerm, this.state.actType)
 	}
 
-	getSelectTerm(term) {
-		this.setState({
-			actType: term
-		});
-
-		this.fetchData(this.state.searchTerm, term)
+	getSelectTerm(actType) {
+		this.setState({actType});
+		this.fetchData(this.state.searchTerm, actType)
 	}
 
 	render(){
