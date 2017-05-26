@@ -11,17 +11,19 @@ class App extends Component {
 
 		this.state = {
 			infoList: {},
-			selectInfo: {}
+			selectInfo: {},
+			searchTerm: '',
+			actType: 'music-indie'
 		};
 	}
 	componentWillMount() {
-		this.fetchData('');
+		this.fetchData(this.state.searchTerm, this.state.actType);
 	}
 
-	fetchData(queryTerm) {
-		
+	fetchData(queryTerm, selectTerm) {
+
 		function getValue(temp) {
-			fetch('https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/music-indie.json')
+			fetch(`https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/${selectTerm}.json`)
 				.then(data => data.json())
 				.then(data => temp(data))
 				.catch((e) => {console.log(e)});
@@ -29,7 +31,7 @@ class App extends Component {
 
 		getValue(temp => {
 			const resp = temp;
-			const dataLen = (!queryTerm) ? 10 : Object.keys(resp).length;
+			const dataLen = (!queryTerm) ? 5 : Object.keys(resp).length;
 			const infoList = resp.slice(0, dataLen).filter(info => info.title.includes(queryTerm));
 			
 			this.setState({
@@ -38,16 +40,32 @@ class App extends Component {
 			});
   		})
 	}
+	getSearchTerm(term) {
+		this.setState({
+			searchTerm: term
+		});
+
+		this.fetchData(term, this.state.actType)
+	}
+
+	getSelectTerm(term) {
+		this.setState({
+			actType: term
+		});
+
+		this.fetchData(this.state.searchTerm, term)
+	}
 
 	render(){
-		const eventSearch = _.debounce(term => this.fetchData(term), 300);
+		const eventSearch = _.debounce(term => this.getSearchTerm(term), 300);
 
 		return (
 			<div className="container" id="container">
 				<InfoList
 					fetchData={eventSearch}
 					infoList={this.state.infoList}
-					onInfoSelect={selectInfo => this.setState({selectInfo})} />
+					onInfoSelect={selectInfo => this.setState({selectInfo})} 
+					onActSelect={term => this.getSelectTerm(term)} />
 
 				<InfoDetail 
 					InfoDetail={this.state.selectInfo}

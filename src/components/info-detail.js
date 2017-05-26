@@ -23,6 +23,10 @@ const InfoDetail = ({InfoDetail}) => {
 		            	<span className="describe-title"><span className="icon-pacman"></span> 活動名稱</span>
 		            	<span className="describe-cont">{InfoDetail.title}</span>
 		          	</div>
+		          	<div className="describe-col">
+		           		<span className="describe-title"><span className="icon-pacman"></span> 演出者</span>
+		            	<span className="describe-cont">{InfoDetail.showUnit}</span>
+		          	</div>
 		         	<div className="describe-col">
 		           		<span className="describe-title"><span className="icon-pacman"></span> 地點</span>
 		            	<span className="describe-cont">{showInfo.locationName}</span>
@@ -32,8 +36,8 @@ const InfoDetail = ({InfoDetail}) => {
 		           		<span className="describe-cont">{InfoDetail.descriptionFilterHtml}</span>
 		          	</div>
 		          	<div className="describe-col">
-		            	<span className="describe-title"><span className="icon-pacman"></span> 售票資訊</span>
-		            	<span className="describe-cont">{showInfo.price}<a href={InfoDetail.webSales}><b className="icon-directions_run"></b>購票網站</a></span>
+		            	<span className="describe-title"><span className="icon-pacman"></span> 售票/詳細資訊</span>
+		            	<span className="describe-cont">{showInfo.price}<a href={InfoDetail.webSales} target="_blank"><b className="icon-directions_run"></b>購票/了解去</a></span>
 		         	 </div>
 		         	<div className="describe-col">
 		            	<span className="describe-title"><span className="icon-pacman"></span> 地址</span>
