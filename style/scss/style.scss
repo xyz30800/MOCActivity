@@ -343,7 +343,7 @@ nav {
 					display: inline-block;
 				}
 				header {
-					width: calc(100% - 100px);
+					width: calc(100% - 160px);
 					color: $color-4;
 					margin-bottom: 10px;
 					font-size: 20px;
@@ -353,7 +353,7 @@ nav {
 				}
 				select {
 					float: right;
-					width: 100px;
+					width: 160px;
 					color: rgba(0,0,0,0.8);
 					font-size: 16px;
 					padding: 3px;

@@ -30,10 +30,14 @@ class App extends Component {
 		}
 
 		getValue(temp => {
+
 			const resp = temp;
-			const dataLen = (!queryTerm) ? 5 : Object.keys(resp).length;
-			const infoList = resp.slice(0, dataLen).filter(info => info.title.includes(queryTerm));
-			
+			const dataLen = (!queryTerm) ? 10 : Object.keys(resp).length;
+			//const dataLen = 5;
+			const infoList = resp.filter(info => info.title.includes(queryTerm)).slice(0, dataLen);
+
+			if (infoList.length === 0) return;
+
 			this.setState({
 				infoList,
 				selectInfo: infoList[0]
@@ -62,8 +66,7 @@ class App extends Component {
 					onActSelect={term => this.getSelectTerm(term)} />
 
 				<InfoDetail 
-					InfoDetail={this.state.selectInfo}
-				/>	
+					infoDetail={this.state.selectInfo} />	
 			</div>
 		)
 	}

@@ -7,10 +7,7 @@ class GoogleMapComponent extends Component {
 		super(props);
 		
 		this.state = {
-			location: {
-				lat: 0,
-				lng: 0
-			},
+			location: {lat: 0, lng: 0 },
 			wait: true
 		};
 	}
@@ -29,7 +26,7 @@ class GoogleMapComponent extends Component {
 		this.setState({
         	wait: false
         });
-        // 再 re-render 地圖資料
+        // 間隔 100ms，再 re-render 地圖資料
 		setTimeout(() => {
             this.setState({
             	location: {
@@ -45,7 +42,7 @@ class GoogleMapComponent extends Component {
 
 		let map = {};
 		if (!this.state.location.lat) {
-			map = <div className="invalid-map">沒有經緯度資料</div>;
+			map = <div className="invalid-map">沒有地圖資料</div>;
 		} else if (!this.state.wait) {
 			map = <div className="invalid-map">讀取中......</div>;
 		} else {
