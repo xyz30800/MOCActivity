@@ -36,12 +36,11 @@ class App extends Component {
 			//const dataLen = 5;
 			const infoList = resp.filter(info => info.title.includes(queryTerm)).slice(0, dataLen);
 
-			if (infoList.length === 0) return;
-
-			this.setState({
-				infoList,
-				selectInfo: infoList[0]
-			});
+			if (infoList.length !== 0) {// 如果搜尋結果不為空，儲存 selectInfo
+				this.setState({ selectInfo: infoList[0] });
+			}
+			// 不管搜尋結果為何，一律傳到 InfoList 去判斷是否為空，如為空則秀出'無資料'
+			this.setState({ infoList });
   		})
 	}
 	getSearchTerm(searchTerm) {

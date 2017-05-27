@@ -17,9 +17,11 @@ class InfoDetail extends Component {
 
 	componentWillReceiveProps(nextProps) {
 		const detailMount = nextProps.infoDetail;
+		// props 傳入要有值，才能呈現 detail component
 		if (detailMount || Object.keys(detailMount).length !== 0) {
 
 			const eventsList = detailMount.showInfo;
+			// 確認 showInfo 是否有多筆 event，有的話 import select component
 			if (eventsList.length === 1) {
 				this.setState({
 					detailData: detailMount,
