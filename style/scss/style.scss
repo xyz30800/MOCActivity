@@ -14,7 +14,6 @@ $shadow: 1px 3px 5px rgba(0,0,0,0.3);
 $bottom-color: rgba(0,0,0,.5);
 
 body, html {
-  	height: 100%;
 	font-family: "Helvetica Neue",Helvetica,"segoe ui","microsoft jhenghei","microsoft mhei",stheititc,sans-serif;
 	// font-family: 'Source Sans Pro', sans-serif;
 }
@@ -33,6 +32,7 @@ nav {
 	background-color: $color-2;
 	z-index: 20;
 	.container {
+		text-align: center;
 		max-width: $container-width;
 		width: 100%;
 		margin: 0 auto;
@@ -45,65 +45,10 @@ nav {
 			padding: 12px;
 		}
 		> * {
-			float: left;
 			display: inline-block;
 			font-weight: bold;
 			height: 40px;
 			line-height: 40px;
-
-		}
-		.menu-btn {
-			display: none;
-			cursor: pointer;
-			@include bigPhone(){
-				display: inline-block;
-				font-size: 28px;
-				height: 35px;
-				margin-right: 15px;
-				transform:rotate(0deg);
-				@include transition(all, .2s);
-			}
-		}
-		.menu-cover {
-			display: none;
-			@include bigPhone(){
-				position: fixed;
-				top: 64px;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				background-color: rgba(39,40,34,.3);
-				z-index: 10;
-			}
-		}
-		#menu-ckb {
-			&:checked {
-				@include bigPhone(){
-					~ .nav {
-						width: 160px;
-						height: auto;
-						display: block;
-						position: absolute;
-						top: 64px;
-						left: 0;
-						background-color: white;
-						padding: 10px;
-						z-index: 15;
-						box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-						a {
-							width: 100%;
-							display: inline-block;
-						}
-					}
-					~ .menu-btn {
-						transform:rotate(90deg);
-					}
-					~ .menu-cover {
-						display: block;
-						cursor: pointer;
-					}
-				}
-			}
 		}
 		h1 a {
 			font-size: 32px;
@@ -111,49 +56,6 @@ nav {
 			@include bigPhone(){
 				font-size: 24px;
 			}
-		}
-		.nav {
-			display: inline-block;
-			float: right;
-			@include bigPhone(){
-				display: none;
-			}
-
-			a,{
-				cursor: pointer;
-				color: $color-4;
-				padding: 0 8px;
-				display: inline-block;
-				@include transition(opacity, 0.3s);
-				@include opacity(1);
-				&:hover {
-					border-bottom: 1px solid $bottom-color;
-					@include opacity(0.9);
-				}
-			}
-		}
-		.about {
-			text-align: center;
-			width: 70px;
-			float: right;
-			padding: 0 5px;
-			margin: 0 8px;
-		    color: $color-4;
-			border: 1px solid $color-4;
-		    @include border-radius(5px);
-
-		    &:hover {
-				@include opacity(0.7);
-		    }
-		    @include bigPhone(){
-		    	width: 60px;
-		    	padding: 0;
-				font-size: 16px;
-		    }
-		    @include minPhone(){
-		    	width: 50px;
-				font-size: 14px;
-		    }
 		}
 	}
 }
@@ -173,7 +75,10 @@ nav {
 		padding: 30px 10px;
 		@include clearfix();
 		@include minDesktop() {
-			padding: 20px 20px;
+			padding: 20px;
+		}
+		@include bigPhone() {
+			padding: 8px;
 		}
 
 		> div {
@@ -186,13 +91,18 @@ nav {
 			box-shadow: 1px 3px 1px rgba(0,0,0,0.2);
 			@include border-radius(8px);
 			@include transition(width, .3s);
+			@include bigPhone() {
+				margin: 0;
+			}
 		}
 		.info-list {
 			// width: 100%;
 			// width: calc(50% - 8px);
-
+			
 			@include bigPhone() {
 				width: 100%;
+				padding: 12px;
+				margin-top: 15px;
 			}
 			header {
 				color: $color-4;
@@ -275,6 +185,13 @@ nav {
 			    margin-top: 20px;
 				color: $color-1;
 			}
+			> h2 {
+				float: right;
+				font-size: 14px;
+				padding-right: 16px;
+				font-style: italic;
+				color: rgba(0,0,0,.6);
+			}
 			.info-each {
 				display: flex;
 				align-items: center;
@@ -298,11 +215,18 @@ nav {
 				.event {
 					padding: 0 15px 0 20px;
 					width: calc(100% - 70px - 35px);
+					@include pad() {
+						padding: 0 1px 0 15px;
+					}
 					h2 {
 						margin-bottom: 5px;
 						font-size: 16px;
 						line-height: 30px;
 						color: $color-3;
+						@include pad() {
+							font-size: 14px;
+							line-height: 25px;
+						}
 						&:first-child {
 							border-bottom: 1px solid rgba(0,0,0,.2);
 						}

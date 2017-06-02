@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import GoogleMapComponent from './google_map';
-import SelectEvent from './search_event';
+import GoogleMapComponent from './detail/google_map';
+import SelectEvent from './detail/select_event';
 
 class InfoDetail extends Component {
 
@@ -47,6 +47,7 @@ class InfoDetail extends Component {
 	}
 
 	render() {
+
 		return (
 			<div className="info-detail" id="info-detail">
 				<div className="header">
@@ -76,7 +77,10 @@ class InfoDetail extends Component {
 		          	</div>
 		          	<div className="describe-col">
 		            	<span className="describe-title"><span className="icon-pacman"></span> 售票/詳細資訊</span>
-		            	<span className="describe-cont">{this.state.eventData.price || '==>'}<a href={this.state.detailData.webSales} target="_blank"><b className="icon-directions_run"></b>購票/了解去</a></span>
+		            	<span className="describe-cont">
+		            		{this.state.eventData.price || '==>'}
+		            		<a href={this.state.detailData.webSales} target="_blank"><b className="icon-directions_run"></b>購票/了解去</a>
+		            	</span>
 		         	 </div>
 		         	<div className="describe-col">
 		            	<span className="describe-title"><span className="icon-pacman"></span> 地址</span>

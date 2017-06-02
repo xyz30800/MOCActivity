@@ -12,8 +12,9 @@ class App extends Component {
 		this.state = {
 			infoList: {},
 			selectInfo: {},
+			dataTotalLen: 0,
 			searchTerm: '',
-			actType: 'music-indie'
+			actType: 'music-indie',
 		};
 	}
 	componentWillMount() {
@@ -23,6 +24,7 @@ class App extends Component {
 	fetchData(queryTerm, selectTerm) {
 
 		function getValue(temp) {
+			//fetch(`https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/${selectTerm}.json`)
 			fetch(`https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/${selectTerm}.json`)
 				.then(data => data.json())
 				.then(data => temp(data))
@@ -32,7 +34,8 @@ class App extends Component {
 		getValue(temp => {
 
 			const resp = temp;
-			const dataLen = (!queryTerm) ? 10 : Object.keys(resp).length;
+			const dataTotalLen = Object.keys(resp).length;
+			const dataLen = (!queryTerm) ? 5 : dataTotalLen;
 			//const dataLen = 5;
 			const infoList = resp.filter(info => info.title.includes(queryTerm)).slice(0, dataLen);
 
@@ -40,7 +43,7 @@ class App extends Component {
 				this.setState({ selectInfo: infoList[0] });
 			}
 			// 不管搜尋結果為何，一律傳到 InfoList 去判斷是否為空，如為空則秀出'無資料'
-			this.setState({ infoList });
+			this.setState({ infoList, dataTotalLen });
   		})
 	}
 	getSearchTerm(searchTerm) {
@@ -62,7 +65,8 @@ class App extends Component {
 					fetchData={eventSearch}
 					infoList={this.state.infoList}
 					onInfoSelect={selectInfo => this.setState({selectInfo})} 
-					onActSelect={term => this.getSelectTerm(term)} />
+					onActSelect={term => this.getSelectTerm(term)}
+					dataTotalLen={this.state.dataTotalLen} />
 
 				<InfoDetail 
 					infoDetail={this.state.selectInfo} />	
