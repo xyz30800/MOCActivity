@@ -14,46 +14,56 @@ class App extends Component {
 			selectInfo: {},
 			dataTotalLen: 0,
 			searchTerm: '',
-			actType: 'music-indie',
+			selectTerm: 'music-indie',
 		};
 	}
 	componentWillMount() {
-		this.fetchData(this.state.searchTerm, this.state.actType);
+		this.fetchData(this.state.searchTerm, this.state.selectTerm);
 	}
 
-	fetchData(queryTerm, selectTerm) {
+	fetchData(searchTerm, selectTerm) {
 
 		function getValue(temp) {
 			//fetch(`https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/${selectTerm}.json`)
 			fetch(`https://raw.githubusercontent.com/xyz30800/MOCActivity/master/importData/${selectTerm}.json`)
 				.then(data => data.json())
 				.then(data => temp(data))
-				.catch((e) => {console.log(e)});
+				.catch((e) => { console.log(e)} );
 		}
 
 		getValue(temp => {
-
 			const resp = temp;
 			const dataTotalLen = Object.keys(resp).length;
-			const dataLen = (!queryTerm) ? 5 : dataTotalLen;
-			//const dataLen = 5;
-			const infoList = resp.filter(info => info.title.includes(queryTerm)).slice(0, dataLen);
+			const dataLen = (!searchTerm) ? 5 : dataTotalLen;
+			const infoList = resp.filter(info => info.title.includes(searchTerm)).slice(0, dataLen);
 
-			if (infoList.length !== 0) {// 如果搜尋結果不為空，儲存 selectInfo
-				this.setState({ selectInfo: infoList[0] });
+			if (infoList.length !== 0) {// 如果搜尋結果不為空，要儲存 selectInfo
+				//console.log('1')
+				this.setState({ 
+					selectInfo: infoList[0],
+					infoList,
+					selectTerm,
+					searchTerm,
+					dataTotalLen
+				});
+			} else {
+				//console.log('2')
+				this.setState({ 
+					selectInfo: {},
+					infoList,
+					selectTerm,
+					searchTerm,
+					dataTotalLen 
+				});
 			}
-			// 不管搜尋結果為何，一律傳到 InfoList 去判斷是否為空，如為空則秀出'無資料'
-			this.setState({ infoList, dataTotalLen });
   		})
 	}
 	getSearchTerm(searchTerm) {
-		this.setState({searchTerm});
-		this.fetchData(searchTerm, this.state.actType)
+		this.fetchData(searchTerm, this.state.selectTerm)
 	}
 
-	getSelectTerm(actType) {
-		this.setState({actType});
-		this.fetchData(this.state.searchTerm, actType)
+	getSelectTerm(selectTerm) {
+		this.fetchData(this.state.searchTerm, selectTerm)
 	}
 
 	render(){
