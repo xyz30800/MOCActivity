@@ -16,6 +16,11 @@ class App extends Component {
 			searchTerm: '',
 			selectTerm: 'music-indie',
 		};
+
+		// Not Necessary, arrow functions as wrappers in callbacks properties which automatically bind this, that’s why we don’t need to use .bind() method
+		// this.fetchData = this.fetchData.bind(this);
+		// this.getSelectTerm = this.getSelectTerm.bind(this);
+		// this.getSearchTerm = this.getSearchTerm.bind(this);
 	}
 	componentWillMount() {
 		this.fetchData(this.state.searchTerm, this.state.selectTerm);
@@ -59,16 +64,15 @@ class App extends Component {
   		})
 	}
 	getSearchTerm(searchTerm) {
-		this.fetchData(searchTerm, this.state.selectTerm)
+		this.fetchData(searchTerm, this.state.selectTerm);
 	}
 
 	getSelectTerm(selectTerm) {
-		this.fetchData(this.state.searchTerm, selectTerm)
+		this.fetchData(this.state.searchTerm, selectTerm);
 	}
 
 	render(){
 		const eventSearch = _.debounce(term => this.getSearchTerm(term), 300);
-
 		return (
 			<div className="container" id="container">
 				<InfoList
@@ -76,7 +80,9 @@ class App extends Component {
 					infoList={this.state.infoList}
 					onInfoSelect={selectInfo => this.setState({selectInfo})} 
 					onActSelect={term => this.getSelectTerm(term)}
-					dataTotalLen={this.state.dataTotalLen} />
+					dataTotalLen={this.state.dataTotalLen}
+					searchTerm={this.state.searchTerm}
+					selectTerm={this.state.selectTerm} />
 
 				<InfoDetail 
 					infoDetail={this.state.selectInfo} />	

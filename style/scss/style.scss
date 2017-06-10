@@ -209,8 +209,9 @@ nav {
 				img {
 					width: 80px;
 					height: 80px;
-					border: 1px solid rgba(0,0,0,.2);
-					@include border-radius(5px);
+					
+					margin-left: 15px;
+					@include border-radius(50%);
 				}
 				.event {
 					padding: 0 15px 0 20px;

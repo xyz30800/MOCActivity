@@ -3,7 +3,7 @@ import InfoItem from './list/info_list_item';
 import SearchBar from './list/search_bar';
 import SelectBar from './list/select_bar';
 
-const InfoList = ({infoList, fetchData, onInfoSelect, onActSelect, dataTotalLen}) => {
+const InfoList = ({infoList, fetchData, onInfoSelect, onActSelect, dataTotalLen, searchTerm, selectTerm}) => {
 
 	let infoItems = '';
 	const listLength = Object.keys(infoList).length;
@@ -13,9 +13,11 @@ const InfoList = ({infoList, fetchData, onInfoSelect, onActSelect, dataTotalLen}
 		infoItems = infoList.map(itemEach => {
 			return (
 				<InfoItem
-					onInfoSelect={onInfoSelect}
 					key={itemEach.UID}
+					onInfoSelect={onInfoSelect}
 					itemEach={itemEach}
+					searchTerm={searchTerm}
+					selectTerm={selectTerm}
 				/>
 			)
 		});
