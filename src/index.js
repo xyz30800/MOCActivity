@@ -1,14 +1,16 @@
 import React, {Component}  from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 import InfoList from './components/info_list';
 import InfoDetail from './components/info-detail';
+import './css/style';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-
+		
 		this.state = {
 			infoList: {},
 			selectInfo: {},
@@ -91,4 +93,4 @@ class App extends Component {
 	}
 }
 
-ReactDOM.render(<App />, document.querySelector('#content'));
+ReactDOM.render(<App />, document.querySelector('#container'));

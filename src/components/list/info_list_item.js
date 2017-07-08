@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const InfoItem = ({itemEach, onInfoSelect, searchTerm, selectTerm}) => {
-  console.log(selectTerm)
+  
   let thumbnailUrl = '';
   if (!itemEach.imageUrl){
-    thumbnailUrl = `../../img/${selectTerm}.svg`;
+    thumbnailUrl = `src/img/${selectTerm}.svg`;
   } else {
     thumbnailUrl = itemEach.imageUrl;
   }
@@ -19,6 +20,16 @@ const InfoItem = ({itemEach, onInfoSelect, searchTerm, selectTerm}) => {
       <span className="icon-triangle-right"></span>        
     </div>
 	);
+}
+
+InfoItem.propTypes = {
+    itemEach: PropTypes.oneOfType([
+                PropTypes.object,
+                PropTypes.array
+            ]),
+    onInfoSelect: PropTypes.func,
+    searchTerm: PropTypes.string,
+    selectTerm: PropTypes.string
 }
 
 export default InfoItem;

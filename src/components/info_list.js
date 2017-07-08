@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import InfoItem from './list/info_list_item';
 import SearchBar from './list/search_bar';
 import SelectBar from './list/select_bar';
 
 const InfoList = ({infoList, fetchData, onInfoSelect, onActSelect, dataTotalLen, searchTerm, selectTerm}) => {
-
+	
 	let infoItems = '';
 	const listLength = Object.keys(infoList).length;
 	if (listLength === 0) {
@@ -32,6 +33,19 @@ const InfoList = ({infoList, fetchData, onInfoSelect, onActSelect, dataTotalLen,
 			{infoItems}
         </div>
 	);
+}
+
+InfoList.propTypes = {
+  	infoList: PropTypes.oneOfType([
+	            PropTypes.object,
+	            PropTypes.array
+	        ]),
+  	fetchData: PropTypes.func,
+  	onInfoSelect: PropTypes.func,
+  	onActSelect :PropTypes.func,
+  	dataTotalLen: PropTypes.number,
+  	searchTerm: PropTypes.string,
+  	selectTerm: PropTypes.string
 }
 
 export default InfoList;

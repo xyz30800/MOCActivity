@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import GoogleMapComponent from './detail/google_map';
 import SelectEvent from './detail/select_event';
 
@@ -100,6 +102,10 @@ class InfoDetail extends Component {
 	        </div>
 		);	
 	}
+}
+
+InfoDetail.propTypes = {
+  	infoDetail: PropTypes.object
 }
 
 export default InfoDetail;

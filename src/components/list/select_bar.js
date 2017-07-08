@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const SelectBar = ({onActSelect}) => {
 
@@ -12,6 +13,10 @@ const SelectBar = ({onActSelect}) => {
 			</select>
         </div>
 	);
+}
+
+SelectBar.propTypes = {
+    onActSelect: PropTypes.func
 }
 
 export default SelectBar;

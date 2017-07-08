@@ -50,13 +50,17 @@ class GoogleMapComponent extends Component {
 			                <Marker position={this.state.location} />
 						</GoogleMap>
 					}
-				>
-				</GoogleMapLoader>
+				/>
 			);
 		}
 
 		return map;
 	}
 }
+
+GoogleMapComponent.propTypes = {
+  	lng: PropTypes.number,
+	lat: PropTypes.number
+};
 
 export default GoogleMapComponent;

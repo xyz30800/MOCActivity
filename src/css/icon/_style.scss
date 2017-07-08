@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/src/css/icon/icomoon.eot?3wsd25');
+  src:  url('/src/css/icon/icomoon.eot?3wsd25#iefix') format('embedded-opentype'),
+    url('/src/css/icon/icomoon.ttf?3wsd25') format('truetype'),
+    url('/src/css/icon/icomoon.woff?3wsd25') format('woff'),
+    url('/src/css/icon/icomoon.svg?3wsd25#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-back:before {
+  content: "\e903";
+}
+.icon-directions_run:before {
+  content: "\e900";
+}
+.icon-menu2:before {
+  content: "\e901";
+}
+.icon-triangle-right:before {
+  content: "\e902";
+}
+.icon-pacman:before {
+  content: "\e916";
+}
+.icon-bullhorn:before {
+  content: "\e91a";
+}
+.icon-map2:before {
+  content: "\e94c";
+}
+.icon-search:before {
+  content: "\e986";
+}

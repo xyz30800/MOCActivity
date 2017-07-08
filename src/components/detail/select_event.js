@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 const SelectEvent = ({eventsList, eventChange}) => {
 
@@ -13,7 +14,14 @@ const SelectEvent = ({eventsList, eventChange}) => {
 			}
 		</select>
 	);
+}
 
+SelectEvent.propTypes = {
+  	eventsList: PropTypes.oneOfType([
+	            	PropTypes.object,
+	            	PropTypes.array
+	        	]),
+  	eventChange: PropTypes.func
 }
 
 export default SelectEvent;
