@@ -44,12 +44,12 @@ module.exports = {
       },
       {
         exclude: /node_modules/,
-        test: /\.(jpe?g|png|gif|svg)$/,
+        test: /\.(ttf|eot|svg|woff(2)?|jpe?g|png|gif|)$/,        
         use: [
           {
             loader: 'url-loader',
             options: {
-              limit: 10240
+              limit: 10240,
             }
           },
           'image-webpack-loader'
