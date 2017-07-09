@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { GoogleMapLoader, GoogleMap, Marker } from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import PropTypes from 'prop-types';
 
 class GoogleMapComponent extends Component {
@@ -9,52 +9,46 @@ class GoogleMapComponent extends Component {
 		
 		this.state = {
 			location: {},
-			loading: true
+			loading: false
 		};
+
+		this.callGoogleMap = this.callGoogleMap.bind(this);
 	}
-	componentWillMount() {
-		this.setState({
-        	location: this.props,
-        	loading: false
+
+	callGoogleMap(location) {
+		const mapApi = new google.maps.Map(document.querySelector('#ss'), {
+			zoom: 15,
+			center: location
+		});
+
+		new google.maps.Marker({
+        	position: location,
+        	map: mapApi,
         });
+	}
+	
+	componentDidUpdate(prevProps, prevState) {
+		if (this.state.loading) {
+			this.callGoogleMap(this.state.location)
+		}
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// 先丟出'讀取中......'的畫面
-		this.setState({
-        	loading: true
-        });
-        // 間隔 100ms，再 re-render 地圖資料
-		setTimeout(() => {
-            this.setState({
-            	location: nextProps,
-            	loading: false
-            })
-        }, 100);
-	}
-	
-	render() {
-		let map = {};
-		if (!this.state.location.lat) {
-			map = <div className="invalid-map">沒有地圖資料</div>;
-		} else if (this.state.loading) {
-			map = <div className="invalid-map">讀取中......</div>;
+		if (isNaN(nextProps.lat)) {
+			this.setState({ location: nextProps, loading: false });
 		} else {
-			map = (
-				<GoogleMapLoader
-					containerElement={ <div style={{height: '100%'}} /> }
-					googleMapElement={
-						<GoogleMap
-							defaultZoom={15} 
-							defaultCenter={this.state.location} >
-			                <Marker position={this.state.location} />
-						</GoogleMap>
-					}
-				/>
-			);
+			this.setState({ location: nextProps, loading: true });
 		}
+	}
 
-		return map;
+	render() {
+		let mapEle = {};
+		if (this.state.loading) {
+			mapEle = <div id="ss" ref="map" style={{height: '100%'}}/>;	
+		} else {
+			mapEle = <div className="invalid-map">沒有地圖資料</div>;
+		}
+		return mapEle;
 	}
 }
 
